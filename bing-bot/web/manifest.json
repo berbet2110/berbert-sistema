@@ -1,0 +1,15 @@
+{
+  "name": "Bot de Pesquisas",
+  "short_name": "Pesquisas",
+  "description": "Pesquisas sucessivas no Bing com assuntos aleatórios.",
+  "lang": "pt-BR",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#f3f5f8",
+  "theme_color": "#0f6cbd",
+  "icons": [
+    { "src": "icone.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }
+  ]
+}

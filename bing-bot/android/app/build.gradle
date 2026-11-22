@@ -1,0 +1,36 @@
+plugins {
+    id 'com.android.application'
+}
+
+android {
+    namespace 'br.com.berbert.bingbot'
+    compileSdk 35
+
+    defaultConfig {
+        applicationId 'br.com.berbert.bingbot'
+        minSdk 24          // Android 7.0 ou mais novo
+        targetSdk 35
+        versionCode 1
+        versionName '1.0'
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled true
+            shrinkResources true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+
+    // A mesma interface web do PWA é empacotada como assets do app (sem cópia duplicada).
+    sourceSets {
+        main {
+            assets.srcDirs = ['../../web']
+        }
+    }
+}

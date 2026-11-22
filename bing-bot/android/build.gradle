@@ -1,0 +1,4 @@
+// Projeto Android do Bot de Pesquisas. A interface (HTML/CSS/JS) vem da pasta ../web.
+plugins {
+    id 'com.android.application' version '8.7.3' apply false
+}

@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#0f6cbd">
+  <meta name="description" content="Faz pesquisas sucessivas no Bing com assuntos aleatórios, com intervalo e quantidade configuráveis.">
+  <title>Bot de Pesquisas</title>
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" href="icone.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="css/app.css">
+</head>
+<body>
+  <header class="topo">
+    <div class="marca">
+      <img src="icone.svg" alt="" width="32" height="32">
+      <h1>Bot de Pesquisas</h1>
+    </div>
+    <span id="estado" class="chip" data-estado="parado">Parado</span>
+  </header>
+
+  <main>
+    <!-- Pesquisa atual e progresso -->
+    <section class="cartao" aria-live="polite">
+      <p class="rotulo">Pesquisa atual</p>
+      <p id="atual" class="atual">Nenhuma ainda</p>
+      <div class="progresso" role="progressbar" aria-label="Progresso" aria-valuemin="0" id="barra">
+        <div id="barra-preenchida"></div>
+      </div>
+      <div class="linha-info">
+        <span><strong id="feitas">0</strong> de <strong id="total">10</strong> pesquisas</span>
+        <span id="proxima"></span>
+      </div>
+      <p id="aviso" class="aviso" hidden></p>
+    </section>
+
+    <!-- Controles -->
+    <section class="controles">
+      <button id="btn-iniciar" class="btn btn-primario" type="button">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg><span>Iniciar</span>
+      </button>
+      <button id="btn-pausar" class="btn" type="button" disabled>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 5h4v14H6zM14 5h4v14h-4z"/></svg><span>Pausar</span>
+      </button>
+      <button id="btn-parar" class="btn btn-perigo" type="button" disabled>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6h12v12H6z"/></svg><span>Parar</span>
+      </button>
+    </section>
+
+    <!-- Configurações -->
+    <details class="cartao" id="config" open>
+      <summary>Configurações</summary>
+      <div class="campo">
+        <label for="quantidade">Quantidade de pesquisas</label>
+        <div class="passo">
+          <button type="button" class="btn-passo" data-alvo="quantidade" data-passo="-1" aria-label="Diminuir">−</button>
+          <input id="quantidade" type="number" inputmode="numeric" min="1" max="100" value="10">
+          <button type="button" class="btn-passo" data-alvo="quantidade" data-passo="1" aria-label="Aumentar">+</button>
+        </div>
+      </div>
+      <div class="campo">
+        <label for="intervalo">Intervalo entre pesquisas (segundos)</label>
+        <div class="passo">
+          <button type="button" class="btn-passo" data-alvo="intervalo" data-passo="-5" aria-label="Diminuir">−</button>
+          <input id="intervalo" type="number" inputmode="numeric" min="10" max="600" step="5" value="30">
+          <button type="button" class="btn-passo" data-alvo="intervalo" data-passo="5" aria-label="Aumentar">+</button>
+        </div>
+      </div>
+      <p class="dica" id="dica-limites"></p>
+
+      <!-- Opções que só existem no app Android -->
+      <div id="opcoes-android" hidden>
+        <label class="interruptor">
+          <input type="checkbox" id="mostrar-bing" checked>
+          <span>Mostrar a página do Bing</span>
+        </label>
+        <label class="interruptor">
+          <input type="checkbox" id="economia">
+          <span>Economia de dados (não carregar imagens)</span>
+        </label>
+      </div>
+    </details>
+
+    <!-- Histórico -->
+    <section class="cartao">
+      <div class="cabecalho-cartao">
+        <h2>Histórico</h2>
+        <button id="btn-limpar" class="btn-texto" type="button">Limpar</button>
+      </div>
+      <ol id="historico" class="historico"></ol>
+      <p id="historico-vazio" class="dica">As pesquisas feitas aparecem aqui.</p>
+    </section>
+
+    <p class="rodape">
+      As pesquisas abrem a página oficial de resultados do Bing (bing.com), uma de cada vez, no ritmo que você
+      escolher. Se o Bing pedir uma verificação, o bot pausa para você resolver.
+      Pesquisas automáticas não valem pontos no Microsoft Rewards e podem violar os termos desse programa.
+    </p>
+  </main>
+
+  <script src="js/termos.js"></script>
+  <script src="js/bot.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

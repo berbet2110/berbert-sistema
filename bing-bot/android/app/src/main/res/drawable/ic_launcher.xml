@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Ícone do app (vetor): lupa com uma "faísca" de aleatoriedade. -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="48dp"
+    android:height="48dp"
+    android:viewportWidth="512"
+    android:viewportHeight="512">
+    <path
+        android:fillColor="#0F6CBD"
+        android:pathData="M112,0h288a112,112 0,0 1,112 112v288a112,112 0,0 1,-112 112h-288a112,112 0,0 1,-112 -112v-288a112,112 0,0 1,112 -112z" />
+    <path
+        android:strokeColor="#FFFFFF"
+        android:strokeWidth="40"
+        android:pathData="M226,118a104,104 0,1 0,0.1 0z" />
+    <path
+        android:strokeColor="#FFFFFF"
+        android:strokeWidth="48"
+        android:strokeLineCap="round"
+        android:pathData="M300,298l100,100" />
+    <path
+        android:fillColor="#9FD3FF"
+        android:pathData="M226,166l16,40 40,16 -40,16 -16,40 -16,-40 -40,-16 40,-16z" />
+</vector>

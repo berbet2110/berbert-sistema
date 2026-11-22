@@ -1,0 +1,40 @@
+# Gera o APK do Bot de Pesquisas (bing-bot/) a cada mudança nessa pasta.
+# O arquivo fica em: Actions > "APK do Bot de Pesquisas" > execução > Artifacts > bot-de-pesquisas-apk
+name: APK do Bot de Pesquisas
+
+on:
+  push:
+    paths:
+      - 'bing-bot/**'
+      - '.github/workflows/bing-bot-apk.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  apk:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: bing-bot/android
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - uses: gradle/actions/setup-gradle@v4
+
+      - name: Compilar APK (debug, já assinado para instalar)
+        run: |
+          chmod +x gradlew
+          ./gradlew --no-daemon assembleDebug
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: bot-de-pesquisas-apk
+          path: bing-bot/android/app/build/outputs/apk/debug/app-debug.apk
+          if-no-files-found: error
