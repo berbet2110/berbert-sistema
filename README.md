@@ -16,12 +16,11 @@ pesquisas recentes.
 Para compilar no computador: abra `android/` no Android Studio, ou rode `./gradlew assembleDebug`
 nessa pasta (precisa do Android SDK). O APK sai em `android/app/build/outputs/apk/debug/`.
 
-**Opção 2: sem instalar nada (PWA)**
-A pasta `web/` é publicada no GitHub Pages pelo workflow "Publicar versão web" a cada push no `main`
-(endereço: https://berbet2110.github.io/berbert-sistema/). Abra no Chrome do Android.
-Para ativar uma única vez: no GitHub, **Settings → Pages → Source: GitHub Actions**.
-Dá para "Adicionar à tela inicial". Nesse modo o Bing abre numa aba separada (sempre a mesma);
-o Chrome reduz os temporizadores de abas em segundo plano, então o app Android é a opção mais estável.
+**Opção 2: sem instalar nada (site / PWA)**
+Abra https://bing-pesquisa.vercel.app/ no Chrome do Android e, se quiser, use "Adicionar à tela inicial".
+A Vercel publica a pasta `web/` (configurado em `vercel.json`) a cada push no `main`.
+Nesse modo o Bing abre numa aba separada (sempre a mesma); o Chrome reduz os temporizadores de abas em
+segundo plano, então o app Android é a opção mais estável.
 
 ## Como usar
 
@@ -41,6 +40,7 @@ web/                 interface (a mesma no PWA e dentro do app Android)
   js/bot.js          motor: agenda, iniciar/pausar/parar, evita repetições, histórico (localStorage)
   js/app.js          liga a interface ao motor e escolhe como abrir o Bing (app ou aba)
   sw.js, manifest.json, icone.svg   instalação como PWA
+vercel.json          publica a pasta web/ na Vercel
 android/             app nativo (Java, sem bibliotecas extras)
   MainActivity.java  dois WebViews: painel (assets da pasta web/) e página do Bing
   PonteJs.java       métodos que o JavaScript chama (pesquisar, mostrar Bing, economia)
